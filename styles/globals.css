@@ -4,10 +4,10 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --primary: 142, 67%, 50%;
-    --secondary: 199, 89%, 48%;
+    --background: theme('colors.neutral-light');
+    --foreground: theme('colors.neutral-dark');
+    --primary: theme('colors.primary-soft');
+    --secondary: theme('colors.secondary-calm');
   }
 }
 
@@ -125,14 +125,9 @@ html, body {
 
 /* Hero Section Background */
 .hero-gradient {
-  background: linear-gradient(135deg, 
-    rgba(236, 253, 245, 1) 0%,
-    rgba(239, 246, 255, 1) 100%
-  );
   background: linear-gradient(135deg,
-    rgba(240, 253, 249, 0.7) 0%,
-    rgba(247, 252, 255, 0.6) 50%,
-    rgba(243, 249, 253, 0.7) 100%
+    theme('colors.primary-soft') 0%,
+    theme('colors.secondary-calm') 100%
   );
 }
 
@@ -238,4 +233,12 @@ section {
   aspect-ratio: 3/4;
   width: 100%;
   object-fit: cover;
+}
+
+/* Newsletter Section Gradient */
+section.py-24.bg-gradient-to-br.text-white.relative.overflow-hidden {
+  background: linear-gradient(135deg,
+    theme('colors.secondary-calm/70') 0%,
+    theme('colors.primary-soft/70') 100%
+  );
 }

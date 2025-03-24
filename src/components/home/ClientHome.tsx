@@ -3,6 +3,7 @@
 import { Button } from '@nextui-org/react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Leaf, Sparkles, Globe } from 'lucide-react';
 
 interface Props {
   benefits: Array<{
@@ -57,7 +58,7 @@ export default function ClientHome({ benefits, testimonials }: Props) {
             <div className="relative aspect-[4/3] w-full max-w-2xl mx-auto animate-float hidden lg:block">
               <div className="absolute inset-0 bg-gradient-to-br from-green-200/30 to-blue-200/30 rounded-full blur-3xl"></div>
               <Image
-                src="/images/berry-smoothie.jpg"
+                src="/images/immunity.jpg"
                 alt="Featured Product"
                 fill
                 className="object-cover rounded-3xl shadow-2xl"
@@ -65,7 +66,7 @@ export default function ClientHome({ benefits, testimonials }: Props) {
               />
               <div className="absolute -bottom-8 -left-8 p-6 benefit-card rounded-2xl animate-fade-up delay-400">
                 <div className="flex items-center gap-4">
-                  <span className="text-3xl">🌿</span>
+                  <Leaf className="text-3xl" />
                   <div>
                     <p className="font-semibold">100% Natural</p>
                     <p className="text-sm text-gray-600">Pure & Organic Ingredients</p>
@@ -91,13 +92,8 @@ export default function ClientHome({ benefits, testimonials }: Props) {
                 className="benefit-card p-8 rounded-2xl animate-fade-up flex flex-col items-center text-center" /* Center content and use flex column */
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="mb-4 h-12 w-12 relative" > {/* Adjust icon container size and use relative positioning */}
-                  <Image
-                    src={benefit.icon === '🌿' ? '/public/file.svg' : benefit.icon === '✨' ? '/public/star.svg' : '/public/globe.svg'} /* Use Image component and paths to svgs */
-                    alt={benefit.title}
-                    fill
-                    sizes="100%" /* Make image responsive within container */
-                  />
+                <div className="mb-4 h-12 w-12 relative flex items-center justify-center" > {/* Adjust icon container size and use relative positioning */}
+                  {benefit.icon === '🌿' ? <Leaf size={48} /> : benefit.icon === '✨' ? <Sparkles size={48} /> : <Globe size={48} />}
                 </div>
                 <h3 className="text-xl font-semibold mb-2">{benefit.title}</h3> {/* Reduced margin */}
                 <p className="text-gray-600 leading-relaxed text-sm">{benefit.description}</p> {/* Smaller description text */}

@@ -38,7 +38,7 @@ export default function ClientHome({ benefits, testimonials }: Props) {
                   href="/products"
                   color="primary"
                   size="lg"
-                  className="hover:scale-105 transition-all px-8 py-6 text-lg rounded-xl shadow-lg hover:shadow-xl"
+                  className="hover:scale-105 hover:bg-primary/20 transition-all px-8 py-6 text-lg rounded-xl shadow-lg hover:shadow-xl"
                 >
                   Explore Products
                 </Button>
@@ -47,7 +47,7 @@ export default function ClientHome({ benefits, testimonials }: Props) {
                   href="/about"
                   variant="bordered"
                   size="lg"
-                  className="hover:bg-white/10 transition-all px-8 py-6 text-lg rounded-xl"
+                  className="hover:bg-white/20 hover:bg-white/10 transition-all px-8 py-6 text-lg rounded-xl"
                 >
                   Learn More
                 </Button>
@@ -57,7 +57,7 @@ export default function ClientHome({ benefits, testimonials }: Props) {
             <div className="relative aspect-[4/3] w-full max-w-2xl mx-auto animate-float hidden lg:block">
               <div className="absolute inset-0 bg-gradient-to-br from-green-200/30 to-blue-200/30 rounded-full blur-3xl"></div>
               <Image
-                src="/images/green-juice.jpg"
+                src="/images/berry-smoothie.jpg"
                 alt="Featured Product"
                 fill
                 className="object-cover rounded-3xl shadow-2xl"
@@ -86,14 +86,21 @@ export default function ClientHome({ benefits, testimonials }: Props) {
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-12 max-w-7xl mx-auto">
             {benefits.map((benefit, index) => (
-              <div 
+              <div
                 key={benefit.title}
-                className="benefit-card p-8 rounded-2xl animate-fade-up"
+                className="benefit-card p-8 rounded-2xl animate-fade-up flex flex-col items-center text-center" /* Center content and use flex column */
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="text-5xl mb-6">{benefit.icon}</div>
-                <h3 className="text-xl font-semibold mb-4">{benefit.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{benefit.description}</p>
+                <div className="mb-4 h-12 w-12 relative" > {/* Adjust icon container size and use relative positioning */}
+                  <Image
+                    src={benefit.icon === '🌿' ? '/public/file.svg' : benefit.icon === '✨' ? '/public/star.svg' : '/public/globe.svg'} /* Use Image component and paths to svgs */
+                    alt={benefit.title}
+                    fill
+                    sizes="100%" /* Make image responsive within container */
+                  />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">{benefit.title}</h3> {/* Reduced margin */}
+                <p className="text-gray-600 leading-relaxed text-sm">{benefit.description}</p> {/* Smaller description text */}
               </div>
             ))}
           </div>
@@ -101,7 +108,7 @@ export default function ClientHome({ benefits, testimonials }: Props) {
       </section>
 
       {/* Newsletter Section */}
-      <section className="py-24 bg-gradient-to-br from-primary/90 to-primary text-white relative overflow-hidden">
+      <section className="py-24 bg-gradient-to-br from-blue-200/70 to-green-200/70 text-white relative overflow-hidden"> {/* Updated gradient */}
         <div className="absolute inset-0 bg-[url('/images/pattern.png')] opacity-10"></div>
         <div className="container mx-auto px-4 text-center relative">
           <div className="max-w-2xl mx-auto">
@@ -113,12 +120,12 @@ export default function ClientHome({ benefits, testimonials }: Props) {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-grow px-6 py-4 rounded-lg bg-white/90 text-gray-800 text-lg"
+                className="flex-grow px-6 py-4 rounded-lg bg-transparent border border-gray-300 text-white text-lg placeholder-white/80" /* Updated input styles */
               />
-              <Button 
-                color="secondary"
+              <Button
+                color="primary" /* Changed to primary color */
                 size="lg"
-                className="px-8 hover:scale-105 transition-transform text-lg"
+                className="px-8 hover:scale-105 transition-transform text-lg rounded-xl shadow-md hover:shadow-lg" /* Updated button styles with rounded corners and shadows */
               >
                 Subscribe
               </Button>

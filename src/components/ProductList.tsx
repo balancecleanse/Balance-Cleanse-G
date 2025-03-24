@@ -1,6 +1,6 @@
 'use client';
 
-import { Card, CardBody, CardFooter, Image, Input, Select, Slider } from "@nextui-org/react";
+import { Card, CardBody, CardFooter, Image, Input, Select, Slider, SelectItem } from "@nextui-org/react"; // Import SelectItem
 import Link from 'next/link';
 import { useState } from "react";
 import { ProductFilters } from "@/lib/types";
@@ -8,7 +8,12 @@ import { products } from "@/data/products";
 
 export default function ProductList() {
   const [filters, setFilters] = useState<ProductFilters>({});
-  const categories = ["All", "Juices", "Smoothies", "Supplements"];
+  const categories = [
+    { value: "All", label: "All" },
+    { value: "Juices", label: "Juices" },
+    { value: "Smoothies", label: "Smoothies" },
+    { value: "Supplements", label: "Supplements" }
+  ];
   
   const filteredProducts = products.filter(product => {
     if (filters.category && filters.category !== "All" && product.category !== filters.category) return false;
@@ -30,10 +35,15 @@ export default function ProductList() {
         <div className="flex flex-wrap gap-4 items-center">
           <Select
             placeholder="Category"
-            options={categories}
             onChange={(val) => setFilters(f => ({ ...f, category: val.target.value }))}
             className="w-[200px]"
-          />
+          >
+            {categories.map((category) => (
+              <SelectItem key={category.value} value={category.value}>
+                {category.label}
+              </SelectItem>
+            ))}
+          </Select>
           <div className="w-[300px]">
             <Slider
               label="Price Range"
@@ -60,7 +70,7 @@ export default function ProductList() {
               <CardBody className="p-0">
                 <Image
                   alt={product.name}
-                  className="w-full object-cover h-[200px]"
+                  className="w-full object-cover h-[200px] product-card-image"
                   src={product.image}
                   fallbackSrc="https://via.placeholder.com/300x200"
                 />

@@ -2,6 +2,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ProductList from '@/components/ProductList';
 import ClientHome from '@/components/home/ClientHome';
+import Image from 'next/image'; // Import Image component
 
 const benefits = [
   {
@@ -57,13 +58,22 @@ export default function Home() {
             <h2 className="text-3xl font-bold text-center mb-12">What Our Customers Say</h2>
             <div className="grid md:grid-cols-3 gap-8">
               {testimonials.map((testimonial, index) => (
-                <div 
+                <div
                   key={index}
-                  className="p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow"
+                  className="testimonial-card p-6 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow flex flex-col" /* Use testimonial-card class and flex column layout */
                 >
-                  <div className="text-yellow-400 text-2xl mb-4">★★★★★</div>
-                  <p className="text-gray-600 mb-4">{testimonial.comment}</p>
-                  <div className="font-semibold">{testimonial.name}</div>
+                  <div className="text-yellow-400 text-2xl mb-2">★★★★★</div> {/* Reduced margin */}
+                  <p className="text-gray-700 mb-4 text-sm leading-relaxed">{testimonial.comment}</p> {/* Darker text, smaller size, adjusted leading */}
+                  <div className="flex items-center mt-auto pt-4 border-t border-gray-200"> {/* Avatar and name container, add top border */}
+                    <Image
+                      src="/images/avatar-placeholder.png" /* Placeholder avatar image - replace later */
+                      alt={testimonial.name}
+                      width={40}
+                      height={40}
+                      className="rounded-full mr-4"
+                    />
+                    <div className="font-semibold text-gray-800">{testimonial.name}</div> {/* Darker name text */}
+                  </div>
                 </div>
               ))}
             </div>

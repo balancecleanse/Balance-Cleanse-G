@@ -19,21 +19,22 @@ export default function ProductList() {
   });
 
   return (
-    <div>
-      <div className="mb-8 space-y-4">
+    <div className="w-full max-w-[2000px] mx-auto">
+      <div className="mb-8 space-y-4 lg:space-y-0 lg:flex lg:items-center lg:gap-8">
         <Input
           placeholder="Search products..."
           value={filters.search}
           onChange={(e) => setFilters(f => ({ ...f, search: e.target.value }))}
           className="max-w-sm"
         />
-        <div className="flex gap-4 flex-wrap">
+        <div className="flex flex-wrap gap-4 items-center">
           <Select
             placeholder="Category"
             options={categories}
             onChange={(val) => setFilters(f => ({ ...f, category: val.target.value }))}
+            className="w-[200px]"
           />
-          <div className="w-64">
+          <div className="w-[300px]">
             <Slider
               label="Price Range"
               step={5}
@@ -49,7 +50,7 @@ export default function ProductList() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 lg:gap-6">
         {filteredProducts.map((product) => (
           <Link href={`/products/${product.id}`} key={product.id}>
             <Card 
